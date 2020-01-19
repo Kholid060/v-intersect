@@ -1,4 +1,7 @@
 # V-Intersect
+
+![version](https://img.shields.io/npm/v/v-intersect)
+
 **Detect when element is visible or hidden on user viewport**
 
 ## Installation
@@ -30,17 +33,18 @@ Vue.component('v-intersect', VIntersectComp)
 
 ## Usage
 ### Directive
+
 ```html
 <div class="content" v-intersect="onIntersect">...</div>
 ```
-The function will be called when the visibility of element change.
+The function will be called when the visibility of the element is changes.
 ```javascript
 onIntersect(observer){
     this.isVisible = observer.isIntersecting
     console.log(observer.entries)
 }
 ```
-- `isIntersecting` = type of this argument is `boolean` and `true` means the element is visible on the screen, and `false` means it's hidden
+- `isIntersecting` type of this argument is `boolean`, and when it's `true` it means the element is visible on the screen, and `false` means it's hidden
 - `entries` [IntersectionObserverEntry](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry)
 
 And if you want the function only called when element is visible you can use `.enter` modifier.
@@ -48,6 +52,7 @@ And if you want the function only called when element is visible you can use `.e
 <div class="content" v-intersect.enter="onIntersect">...</div>
 ```
 ### Options
+
 ```html
 <div class="content" v-intersect="{
     callback: onIntersect,
@@ -62,7 +67,8 @@ And if you want the function only called when element is visible you can use `.e
 For more details [IntersectionObserver Options](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver#Parameters)
 
 ### Once
-It will called the function once when element is visible
+
+It will called the function once when the element is visible
 ```html
 <div class="content" v-intersect="{
     callback: onIntersect,
@@ -70,6 +76,7 @@ It will called the function once when element is visible
 }" />
 ```
 ### Disabling the observer
+
 ```html
 <div class="content" v-intersect="{
     callback: onIntersect,
@@ -78,12 +85,14 @@ It will called the function once when element is visible
 ```
 
 ### Component
+
 ```html
 <v-intersect @change="onIntersect">
     <div class="content">...</div>
 </v-intersect>
 ```
 ### Events
+
 | Name |  Description |
 |---|---|
 | **change**  |  event fired when visibility of the element change |
