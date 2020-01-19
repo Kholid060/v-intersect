@@ -44,8 +44,8 @@ onIntersect(observer){
     console.log(observer.entries)
 }
 ```
-- `isIntersecting` type of this argument is `boolean`, and when it's `true` it means the element is visible on the screen, and `false` means it's hidden
-- `entries` [IntersectionObserverEntry](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry)
+- `isIntersecting`: when it's `true` it means the element is visible on the screen, and `false` means it's hidden
+- `entries`: [IntersectionObserverEntry](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry)
 
 And if you want the function only called when element is visible you can use `.enter` modifier.
 ``` html
@@ -111,4 +111,4 @@ It will called the function once when the element is visible
 **Note**: for `root` prop, you need to pass the element class or id i.e `.content` or `#content`
 
 ## Polyfill
-The IntersectionObserver API currently is not available in all browsers [(IE11, Safari and iOS Safari)](http://caniuse.com/#feat=intersectionobserver). If you intend to support these browsers, you can include [WICG IntersectionObserver Polyfill](https://github.com/w3c/IntersectionObserver/tree/master/polyfill) to your bundle.
+This plugin uses The IntersectionObserver API, and currently it is not available in all browsers [(IE11, Safari and iOS Safari)](http://caniuse.com/#feat=intersectionobserver). If you intend to support these browsers, you can include [WICG IntersectionObserver Polyfill](https://github.com/w3c/IntersectionObserver/tree/master/polyfill) to your bundle.
