@@ -9,8 +9,7 @@
     "build": "vue-cli-service build --target lib --name v-intersect ./src/index.js",
     "test:unit": "vue-cli-service test:unit",
     "build:docs": "vue-cli-service build --mode production --dest docs",
-    "lint": "vue-cli-service lint",
-    "deploy": "bash deploy.sh"
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^3.4.4",
