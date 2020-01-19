@@ -4,10 +4,10 @@
 set -e
 
 # build
-npm run build
+npm run build:docs
 
 # navigate into the build output directory
-cd dist
+cd docs
 
 # if you are deploying to a custom domain
 # echo 'www.example.com' > CNAME
