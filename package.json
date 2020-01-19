@@ -1,24 +1,41 @@
 {
-  "name": "vue-intersection",
-  "version": "0.1.0",
-  "private": true,
+  "name": "v-intersect",
+  "version": "0.1.1",
+  "private": false,
+  "description": "Detect when element is visible or hidden on user viewport",
+  "main": "dist/v-intersect.common.js",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --target lib --name v-intersect ./src/index.js",
     "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint"
+    "build:docs": "vue-cli-service build --mode production --dest docs",
+    "lint": "vue-cli-service lint",
+    "deploy": "bash deploy.sh"
   },
   "dependencies": {
     "core-js": "^3.4.4",
-    "vue": "^2.6.10"
+    "vue": "^2.6.10",
+    "vue-heroicons": "^0.9.1",
+    "vue-prism-component": "^1.1.1"
   },
+  "keywords": [
+    "vue",
+    "vuejs"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kholid060/v-intersect.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kholid060/v-intersect/issues"
+  },
+  "license": "MIT",
+  "main": "dist/vue-observe-visibility.common.js",
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.1.0",
     "@vue/cli-plugin-eslint": "^4.1.0",
-    "@vue/cli-plugin-unit-jest": "^4.1.0",
     "@vue/cli-service": "^4.1.0",
     "@vue/eslint-config-airbnb": "^4.0.0",
-    "@vue/test-utils": "1.0.0-beta.29",
     "babel-eslint": "^10.0.3",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
