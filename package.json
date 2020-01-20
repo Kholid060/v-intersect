@@ -1,6 +1,6 @@
 {
   "name": "v-intersect",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
   "description": "Detect when element is visible or hidden on user viewport",
   "main": "dist/v-intersect.common.js",

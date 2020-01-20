@@ -4,7 +4,6 @@
     <prism language="javascript" class="prism" code="npm install --s v-intersect"/>
     <p>or</p>
     <prism language="javascript" class="prism" code="yarn add v-intersect"/>
-    </prism>
     <h2>Usage</h2>
     <p>main.js</p>
     <prism language="javascript" class="prism" code="import Vue from 'vue'

@@ -4,6 +4,10 @@
 
 **Detect when element is visible or hidden on user viewport**
 
+## Demo
+
+[Demo](https://kholid060.github.io/v-intersect/)
+
 ## Installation
 
 #### NPM
