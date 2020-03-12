@@ -1,6 +1,6 @@
 {
   "name": "v-intersect",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": false,
   "description": "Detect when element is visible or hidden on user viewport",
   "main": "dist/v-intersect.common.js",
@@ -14,8 +14,7 @@
   "dependencies": {
     "core-js": "^3.4.4",
     "vue": "^2.6.10",
-    "vue-heroicons": "^0.9.1",
-    "vue-prism-component": "^1.1.1"
+    "vue-heroicons": "^0.9.1"
   },
   "keywords": [
     "vue",
@@ -29,8 +28,8 @@
     "url": "https://github.com/kholid060/v-intersect/issues"
   },
   "license": "MIT",
-  "main": "dist/vue-observe-visibility.common.js",
   "devDependencies": {
+    "vue-prism-component": "^1.1.1",
     "@vue/cli-plugin-babel": "^4.1.0",
     "@vue/cli-plugin-eslint": "^4.1.0",
     "@vue/cli-service": "^4.1.0",
