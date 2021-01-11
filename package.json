@@ -29,7 +29,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "vue-prism-component": "^1.1.1",
+    "vue-prism-component": "^2.0.0",
     "@vue/cli-plugin-babel": "^4.1.0",
     "@vue/cli-plugin-eslint": "^4.1.0",
     "@vue/cli-service": "^4.1.0",
