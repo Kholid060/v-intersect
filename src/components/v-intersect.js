@@ -1,68 +1,66 @@
+import { onMounted, onUnmounted, watch, h, ref } from 'vue';
+
 export default {
-  name: 'v-intersect',
-  abstract: true,
   props: {
-    root: {
-      type: String,
-      default: '',
-    },
-    rootMargin: {
-      type: String,
-      default: '0px',
-    },
-    threshold: {
-      type: [Number, Array],
-      default: 0,
+    options: {
+      type: Object,
+      default: () => ({}),
     },
     disabled: {
       type: Boolean,
       default: false,
     },
+    enter: {
+      type: Boolean,
+      default: false,
+    },
+    once: {
+      type: Boolean,
+      default: false,
+    },
+    as: {
+      type: String,
+      default: 'div',
+    },
   },
-  created() {
-    const root = this.root ? document.querySelector(this.root) : null;
+  emits: ['change'],
+  setup(props, { slots, emit }) {
+    const rootRef = ref(false);
 
-    this.observer = new IntersectionObserver((entries) => {
-      if (this.disabled) return;
+    let observer;
 
-      const isIntersecting = Boolean(entries.find(entry => entry.isIntersecting));
-      const payload = { isIntersecting, entries };
-      const { change, enter, once } = this.$listeners;
+    function createObserver() {
+      observer = new IntersectionObserver((entries) => {
+        if (props.disabled) return;
 
-      if (change && !enter) this.$emit('change', payload);
+        const isIntersecting = entries.some((entry) => entry.isIntersecting);
 
-      if (isIntersecting) {
-        if (enter) this.$emit('enter', payload);
-        if (once) {
-          this.$emit('once', payload);
-          this.observer.unobserve(this.$slots.default[0].elm);
+        if (isIntersecting) {
+          emit('change', isIntersecting, entries);
+
+          if (props.once) destroyObserver();
+        } else if (!props.enter) {
+          emit('change', isIntersecting, entries);
         }
-      }
-    }, {
-      root,
-      rootMargin: this.rootMargin,
-      threshold: this.threshold,
-    });
-  },
-  mounted() {
-    this.$nextTick(() => {
-      if (this.$slots.default && this.$slots.default.length > 1) {
-        console.error('You may only wrap one element inside a v-intersect component.');
-      } else if (!this.$slots.default || this.$slots.default.length < 1) {
-        console.error('You must have at least one child inside a v-intersect component.');
-        return;
-      }
+      }, props.options)
 
-      this.observer.observe(this.$slots.default[0].elm);
-    });
-  },
-  destroyed() {
-    this.observer.disconnect();
-  },
-  render() {
-    if (this.$slots.default) {
-      return this.$slots.default[0];
+      observer.observe(rootRef.value);
     }
-    return null;
+    function destroyObserver() {
+      if (observer) observer.disconnect();
+    }
+
+    watch(() => props.options, () => {
+      console.log('halo');
+      destroyObserver();
+      createObserver();
+    }, { deep: true });
+
+    onMounted(createObserver);
+    onUnmounted(destroyObserver);
+
+    return () => h(props.as, {
+      ref: rootRef,
+    }, slots.default && slots.default());
   },
 };
