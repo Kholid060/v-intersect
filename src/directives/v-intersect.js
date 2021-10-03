@@ -1,31 +1,23 @@
-/* eslint no-underscore-dangle: 0 */
+function mounted(el, { value, modifiers = {} }) {
+  if (el._intersect) return;
 
-const options = {
-  root: null,
-  rootMargin: '0px',
-  threshold: 0,
-};
+  const isObject = typeof value === 'object' && value !== null;
+  const options = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0,
+  };
 
-function unbind(el) {
-  if (!el._intersect) return;
+  if (isObject && value.options) {
+    Object.entries(value.options).forEach(([key, value]) => {
+      if (options[key]) options[key] = value;
+    });
+  }
 
-  el._intersect.observer.unobserve(el);
-  delete el._intersect;
-}
-
-function changeOptions(items) {
-  Object.keys(items).forEach((key) => {
-    if (Object.prototype.hasOwnProperty.call(options, key)) options[key] = items[key];
-  });
-}
-
-export function bind(el, { value, modifiers = {} }) {
-  const isObject = typeof value === 'object';
-
-  if (isObject && Object.prototype.hasOwnProperty.call(value, 'options')) changeOptions(value.options);
   const callback = isObject ? value.callback : value;
+
   const observer = new IntersectionObserver((entries) => {
-    const isIntersecting = Boolean(entries.find(entry => entry.isIntersecting));
+    const isIntersecting = entries.some((entry) => entry.isIntersecting);
 
     if (!el._intersect || value.disabled) return;
 
@@ -37,12 +29,17 @@ export function bind(el, { value, modifiers = {} }) {
     }
   }, options);
 
-  el._intersect = { observer };
+  el._intersect = { observer, options };
   observer.observe(el);
 }
+function unmounted(el) {
+  if (!el._intersect) return;
 
-const directive = {
-  bind,
+  el._intersect.observer.disconnect();
+  delete el._intersect;
+}
+
+export default {
+  mounted,
+  unmounted,
 };
-
-export default directive;
