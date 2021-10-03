@@ -51,7 +51,6 @@ export default {
     }
 
     watch(() => props.options, () => {
-      console.log('halo');
       destroyObserver();
       createObserver();
     }, { deep: true });

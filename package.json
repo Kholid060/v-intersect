@@ -5,7 +5,7 @@
   "description": "Detect when an element is visible or hidden on user viewport",
   "main": "dist/v-intersect.common.js",
   "scripts": {
-    "build": "rollup --config rollup.build.js"
+    "build": "rollup --config rollup.config.js"
   },
   "dependencies": {},
   "keywords": [
