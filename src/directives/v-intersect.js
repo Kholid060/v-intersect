@@ -23,7 +23,7 @@ function mounted(el, { value, modifiers }) {
       callback({ isIntersecting, entries });
 
       if (el._intersect && value.once) unmounted(el);
-    } else if (callback && !modifiers.enter) {
+    } else if (!modifiers.enter) {
       callback({ isIntersecting, entries });
     }
   }, options);
